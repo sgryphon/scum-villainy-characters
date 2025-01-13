@@ -1,0 +1,931 @@
+<html>
+
+<head>
+  <style>
+    body {
+      font-family: 'Exo 2';
+    }
+
+    .header {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      margin-bottom: 1em;
+    }
+
+    /*
+    .header, .page2-header {
+      border: solid 1px green;
+    }
+
+    .game-name, .playbook-title {
+      border: solid 1px red;
+    }
+    */
+
+    .header .game-name {
+      font-family: 'Ethnocentric';
+      text-transform: uppercase;
+      margin-block-end: 0;
+      text-align: right;
+      margin: 0;
+    }
+
+    .header .game-name .ampersand {
+      color: #888888;
+    }
+
+    .header h2 {
+      font-family: 'Ethnocentric';
+      text-transform: uppercase;
+      margin: 0;
+      display: inline-block;
+      font-size: 2em;
+    }
+
+    .header p {
+      text-transform: uppercase;
+      font-size: 0.7em;
+      margin-top: 0;
+      margin-left: 1em;
+      display: inline-block;
+    }
+
+    .description table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .description .row1 .title {
+      width: 15%;
+    }
+
+    .description .row1 .value {
+      width: 35%;
+    }
+
+    .description .title {
+      border-top: solid 1px black;
+      border-left: solid 1px black;
+      border-bottom: solid 1px black;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .description .value {
+      border-top: solid 1px black;
+      border-right: solid 1px black;
+      border-bottom: solid 1px black;
+      font-family: 'Architects Daughter';
+      color: #0000ff;
+    }
+
+    .money {
+      display: flex;
+      justify-content: left;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
+
+    .money .title {
+      font-family: 'Ethnocentric';
+      text-transform: uppercase;
+    }
+
+    .money .cred {
+      padding-right: 1em;
+    }
+
+    .money .stash {
+      color: #888888;
+    }
+
+    .attributes {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1em;
+    }
+
+    .attribute-table {
+      border-collapse: collapse;
+    }
+
+    .attribute-table td {
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #cccccc;
+      padding-left: 0.5em;
+    }
+
+    .attribute-table .title, .attribute-table .on {
+      color: #000000;
+    }
+
+    .attribute-table .col1 {
+      border-right: solid 1px black;
+      padding-right: 0.5em;
+    }
+
+    .attribute-table .resistance td {
+      color: #000000;
+      padding-left: 0.1em;
+    }
+
+    .attribute-table .resistance .title {
+      font-family: 'Ethnocentric';
+      text-transform: none;
+      font-weight: normal;
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      display: inline-block;
+      width: 7em;
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .attribute-xp ul {
+      margin: 0;
+      padding-left: 1em;
+      font-size: 0.8em;
+    }
+
+    .mark-xp {
+      margin-top: 1em;
+    }
+
+    .mark-xp ul {
+      margin: 0;
+      padding-left: 1em;
+      font-size: 0.8em;
+    }
+
+    .mark-xp p {
+      margin: 0;
+      font-size: 0.8em;
+    }
+
+    .playbook-advancement .title {
+      font-family: 'Ethnocentric';
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      display: inline-block;
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .health {
+      display: flex;
+      justify-content: left;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
+
+    .health .title {
+      font-family: 'Ethnocentric';
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      display: inline-block;
+      width: 6em;
+    }
+
+    .health .block2 {
+      margin-left: 1em;
+    }
+
+    .health .block2 div {
+      margin-bottom: 0.1em;
+    }
+
+    .health .block2 .title {
+      background: #cccccc;
+    }
+
+    .health .block2 .heavy.title {
+      color: #888888;
+      background: #ffffff;
+    }
+
+    .health .stress .title {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .health .trauma {
+      color: #888888;
+    }
+
+    .health .trauma .title {
+      background: #888888;
+      color: #ffffff;
+    }
+
+    .health .trauma-list .value {
+      display: inline-block;
+      width: 100%;
+      border: solid 2px #888888;
+    }
+
+    .harm-table {
+      border-collapse: collapse;
+      width: 24em;
+    }
+
+    .harm-table tr {
+      height: 2em;
+    }
+
+    .harm-table td {
+      text-transform: uppercase;
+      font-weight: bold;
+      border: solid 1px #000000;
+    }
+
+    .harm-table .row1 {
+      height: 1em;
+    }
+
+    .harm-table .row1 td {
+      font-family: 'Ethnocentric';
+      font-weight: normal;
+      background: #000000;
+      color: #ffffff;
+      padding-left: 0.5em;
+    }
+
+    .harm-table .col1,
+    .harm-table .col4 {
+      font-size: 0.7em;
+      background: #CCCCCC;
+    }
+
+    .harm-table .col1 {
+      width: 1em;
+    }
+
+    .harm-table .col4 {
+      width: 4em;
+    }
+
+    .health-note p {
+      margin-top: 0;
+    }
+
+    .health-note .title {
+      font-weight: bold;
+    }
+
+    .special-abilities {
+      background-color: #cccccc;
+      padding-bottom: 0.5em;
+      padding-left: 0;
+    }
+
+    .special-abilities .title-area {
+      background-color: #888888;
+      margin: 0;
+      padding-left: 0.5em;
+    }
+
+    .special-abilities h3 {
+      font-family: 'Ethnocentric';
+      font-weight: normal;
+      margin-bottom: 0.3em;
+      margin-right: 0.5em;
+    }
+
+    .special-abilities p {
+      padding-left: 1em;
+      padding-right: 0.5em;
+      text-indent: -1em;
+      margin: 0;
+      margin-left: 0.3em;
+      margin-bottom: 0.3em;
+    }
+
+    .special-abilities .title {
+      font-weight: bold;
+      font-variant: small-caps;
+    }
+
+    .notes-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      margin-top: 1em;
+    }
+
+    .playbook-friends {
+      background-color: #cccccc;
+      padding-bottom: 0.5em;
+      padding-left: 0;
+      width: 21em;
+    }
+
+    .playbook-friends .title-area {
+      background-color: #888888;
+      margin: 0;
+      padding-left: 0.5em;
+    }
+
+    .playbook-friends h3 {
+      font-family: 'Ethnocentric';
+      font-weight: normal;
+      margin: 0;
+      margin-bottom: 0.3em;
+      margin-right: 0.5em;
+    }
+
+    .playbook-friends .friend-type {
+      font-family: 'Ethnocentric';
+      font-size: 0.7em;
+    }
+
+    .playbook-friends .title {
+      font-weight: bold;
+      margin-left: 1em;
+    }
+
+    .playbook-friends table {
+      padding-right: 0.5em;
+    }
+
+    .notes {
+      margin-left: 1em;
+      flex: 1;
+      border: solid 1px #000000;
+    }
+
+    .notes .title-area {
+      padding-left: 0.5em;
+    }
+
+    .notes h3 {
+      font-family: 'Ethnocentric';
+      font-weight: normal;
+      margin: 0;
+      margin-right: 0.5em;
+    }
+
+    .notes .note-area {
+      padding: 0 0.5em;
+    }
+
+    .notes .note-area p {
+      font-family: 'Architects Daughter';
+      color: #0000ff;
+      margin: 0.3em 0;
+    }
+
+    .notes .note-area .title {
+      text-transform: uppercase;
+    }
+
+    .load {
+      display: flex;
+      justify-content: left;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
+
+    .load>.title {
+      font-family: 'Ethnocentric';
+      margin-right: 1em;
+    }
+
+    .load>div {
+      margin-right: 1em;
+    }
+
+    .load .load-level .title {
+      text-transform: lowercase;
+    }
+
+    .playbook-items {
+      background-color: #cccccc;
+      padding-bottom: 0.5em;
+      padding-left: 0;
+    }
+
+    .playbook-items .title-area {
+      background-color: #888888;
+      margin: 0;
+      padding-left: 0.5em;
+    }
+
+    .playbook-items h3 {
+      font-family: 'Ethnocentric';
+      font-weight: normal;
+      margin-bottom: 0.3em;
+      margin-right: 0.5em;
+    }
+
+    .playbook-items ul {
+      padding: 0;
+      margin: 0;
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+      list-style: none;
+    }
+
+    .playbook-items .title {
+      font-weight: bold;
+    }
+
+    .standard-items {
+      padding-bottom: 0.5em;
+      padding-left: 0;
+    }
+
+    .standard-items .title-area {
+      margin: 0;
+      padding-left: 0.5em;
+    }
+
+    .standard-items h3 {
+      font-family: 'Ethnocentric';
+      font-weight: normal;
+      margin-bottom: 0.3em;
+      margin-right: 0.5em;
+    }
+
+    .standard-items ul {
+      padding: 0;
+      margin: 0;
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+      list-style: none;
+    }
+
+    .standard-items .title {
+      font-weight: bold;
+    }
+
+    .marker {
+      font-size: 1.4em;
+      line-height: 1em;
+      font-weight: normal;
+      display: inline-block;
+      margin-top: -0.2em;
+    }
+
+    .box {
+      font-weight: bold;
+    }
+
+    .box0 {
+      font-weight: bold;
+      font-size: 0.8em;
+      position: relative;
+      top: -0.2em;
+    }
+
+    .license-footer {
+      font-family: 'URW Gothic';
+      font-size: 0.64rem;
+    }
+
+    .page2-header {
+      display: none;
+    }
+
+    @media print {
+      @page {
+        size: A4;
+
+        @bottom-right {
+          content: counter(page);
+        }
+      }
+
+      body {
+        margin: 0;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        page-break-after: avoid;
+      }
+
+      table {
+        page-break-before: avoid;
+        page-break-inside: avoid;
+      }
+
+      .description .row1 .title {
+        width: 20%;
+      }
+
+      .description .row1 .value {
+        width: 30%;
+      }
+
+      .header {
+        flex-direction: row;
+      }
+
+      .header .game-name {
+        display: none;
+      }
+
+      .page2-header {
+        page-break-before: always;
+        display: flex;
+        justify-content: right;
+        margin-bottom: 1em;
+      }
+
+      .page2-header .playbook-title {
+        display: none;
+      }
+
+      .page2-header .game-name {
+        font-family: 'Ethnocentric';
+        text-transform: uppercase;
+        margin-block-end: 0;
+        text-align: right;
+        margin: 0;
+      }
+
+      .page2-header .game-name .ampersand {
+        color: #888888;
+      }
+
+      .license-footer {
+        display: block;
+        font-family: 'URW Gothic';
+        margin-top: 2em;
+      }
+
+      .license-footer .cc-logo {
+        float: left;
+        margin-top: 0;
+        margin-right: 1em;
+        margin-bottom: 1em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <h1 class="game-name">Scum<span class="ampersand">&</span>Villainy</h1>
+    <div class="playbook-title">
+      <h2>
+        Speaker
+      </h2>
+      <p>
+        A respectable person on the take
+      </p>
+    </div>
+  </div>
+  <div class="description">
+    <table>
+      <tr class="row1">
+        <td class="name title">Name</td>
+        <td class="name value">Kasumi Kor</td>
+        <td class="alias title">Alias</td>
+        <td class="alias value">Devil</td>
+      </tr>
+      <tr>
+        <td class="look title">Look</td>
+        <td class="look value" colspan="3">Collared shirt, fancy makeup, intricate rings, cape.</td>
+      </tr>
+      <tr>
+        <td class="heritage title">Heritage</td>
+        <td class="heritage value" colspan="3">Spacer - Family run trading vessel; religious family; lots of rules.</td>
+      </tr>
+      <tr>
+        <td class="background title">Background</td>
+        <td class="background value" colspan="3">Cult - Became Church of Stellar Flame priest; until pleasure tempted you.</td>
+      </tr>
+      <tr>
+        <td class="vice title">Vice</td>
+        <td class="vice value" colspan="3">Pleasure - Hedonism is freedom; religion is bunk.</td>
+      </tr>
+    </table>
+  </div>
+  <div class="attributes">
+    <div>
+      <table class="attribute-table">
+        <tr class="resistance">
+          <td colspan="4">
+            <span class="title">Insight</span>
+            <span class="marker">▯▯▯▯▯▯</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="col1">▷</td>
+          <td>▷</td>
+          <td>▷</td>
+          <td class="title">Doctor</td>
+        </tr>
+        <tr>
+          <td class="col1"><span class="on">▶</span></td>
+          <td>▷</td>
+          <td>▷</td>
+          <td class="title">Hack</td>
+        </tr>
+        <tr>
+          <td class="col1">▷</td>
+          <td>▷</td>
+          <td>▷</td>
+          <td class="title">Rig</td>
+        </tr>
+        <tr>
+          <td class="col1">▷</td>
+          <td>▷</td>
+          <td>▷</td>
+          <td class="title">Study</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <table class="attribute-table">
+        <tr class="resistance">
+          <td colspan="4">
+            <span class="title">Prowess</span>
+            <span class="marker">▯▯▯▯▯▯</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="col1">▷</td>
+          <td>▷</td>
+          <td>▷</td>
+          <td class="title">Helm</td>
+        </tr>
+        <tr>
+          <td class="col1"><span class="on">▶</span></td>
+          <td>▷</td>
+          <td>▷</td>
+          <td class="title">Scramble</td>
+        </tr>
+        <tr>
+          <td class="col1">▷</td>
+          <td>▷</td>
+          <td>▷</td>
+          <td class="title">Scrap</td>
+        </tr>
+        <tr>
+          <td class="col1"><span class="on">▶</span></td>
+          <td>▷</td>
+          <td>▷</td>
+          <td class="title">Skulk</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <table class="attribute-table">
+        <tr class="resistance">
+          <td colspan="4">
+            <span class="title">Resolve</span>
+            <span class="marker">▯▯▯▯▯▯</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="col1">▷</td>
+          <td>▷</td>
+          <td>▷</td>
+          <td class="title">Attune</td>
+        </tr>
+        <tr>
+          <td class="col1"><span class="on">▶</span></td>
+          <td>▷</td>
+          <td>▷</td>
+          <td class="title">Command</td>
+        </tr>
+        <tr>
+          <td class="col1"><span class="on">▶</span></td>
+          <td><span class="on">▶</span></td>
+          <td>▷</td>
+          <td class="title">Consort</td>
+        </tr>
+        <tr>
+          <td class="col1"><span class="on">▶</span></td>
+          <td>▷</td>
+          <td>▷</td>
+          <td class="title">Sway</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="attribute-xp">
+    <ul>
+      <li>Every time you roll a desperate action, <b>mark xp</b> in that action's attribute.</li>
+    </ul>
+  </div>
+  <div class="mark-xp">
+    <div class="playbook-advancement">
+      <span class="title">Advancement</span>
+      <span class="marker">▯▯▯▯▯▯▯▯</span>
+    </div>
+    <p>At the end of each session, for each item below, <b>mark 1 xp</b> (in your playbook or an attribute) or <b>2
+        xp</b> if that item occurred multiple times.</p>
+    <ul>
+      <li>You addressed a tough challenge with deception or influence.</li>
+      <li>You expressed your beliefs, drives, heritage, or background.</li>
+      <li>You struggled with issues from your vice or traumas during the session.</li>
+    </ul>
+  </div>
+  <div class="health">
+    <div>
+      <table class="harm-table">
+        <tr class="row1">
+          <td colspan="4">Harm</td>
+        </tr>
+        <tr>
+          <td class="col1">3</td>
+          <td colspan="2"></td>
+          <td class="col4">Need Help</td>
+        </tr>
+        <tr>
+          <td class="col1">2</td>
+          <td></td>
+          <td></td>
+          <td class="col4">-1D</td>
+        </tr>
+        <tr>
+          <td class="col1">1</td>
+          <td></td>
+          <td></td>
+          <td class="col4">Less Effect</td>
+        </tr>
+      </table>
+    </div>
+    <div class="block2">
+      <div class="stress">
+        <span class="title">Stress</span>
+        <span class="marker">▯▯▯▯▯▯▯▯▯</span>
+      </div>
+      <div class="trauma">
+        <span class="title">Trauma</span>
+        <span class="marker">▯▯▯▯</span>
+      </div>
+      <div class="trauma-list">
+        <span class="value">&nbsp;</span>
+      </div>
+      <div>
+        <span class="title">Armor</span>
+        <span class="marker">▯</span>
+        <span class="heavy title">Heavy</span>
+        <span class="marker">▯</span>
+      </div>
+      <div>
+        <span class="title">Special</span>
+        <span class="marker">▯</span>
+      </div>
+    </div>
+  </div>
+  <div class="health-note">
+    <p><span class="title">Recovery:</span> Get treatement in <b>downtime</b> to fill your <b>healing clock</b>. <span
+        class="marker">▯▯▯▯▯▯</span></p>
+  </div>
+  <div class="money">
+    <div class="cred"><span class="title">Cred</span> <span class="box">☐☐☐☐</span></div>
+    <div class="stash"><span class="title">Stash</span> <span class="box">☐☐☐☐☐ ☐☐☐☐☐ ☐☐☐☐☐ ☐☐☐☐☐ ☐☐☐☐☐ ☐☐☐☐☐</span></div>
+  </div>
+  <div class="special-abilities">
+    <div class="title-area">
+      <h3>Special Abilities</h3>
+    </div>
+    <p><span>▶</span> <span class="title">Air of Respectability:</span> You get an extra <b>downtime</b> activity to <b>acquire assets</b> or <b>lay low</b>.</p>
+    <p><span>▶</span> <span class="title">Subterfuge:</span> You may expend your <b>special armor</b> to resist a consequence of persuasion or suspicion. When you <b>resist</b> with <b>insight</b>, gain <b>+1d</b>.</p>
+  </div>
+  <div class="notes-row">
+    <div class="playbook-friends">
+      <div class="title-area">
+        <h3>Influential friends</h3>
+      </div>
+      <table>
+        <tr>
+          <td>▼ <span class="friend-type">(rival)</span></td>
+          <td><span class="title">Arryn</span>, a noble</td>
+        </tr>
+        <tr>
+          <td>▲ <span class="friend-type">(close)</span></td>
+          <td><span class="title">Manda</span>, a Guild member</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span class="title">Kerry</span>, a doctor</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span class="title">Je-zee</span>, a diplomat</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span class="title">_________________________</span></td>
+        </tr>
+      </table>
+    </div>
+    <div class="notes">
+      <div class="title-area">
+        <h3>Notes / Projects</h3>
+      </div>
+      <div class="note-area">
+        <p>
+          <span class="title">Church of Stellar Flame</span> (IV): One
+          of the official Hegemonic Cults.
+          Religious zealots with only a few
+          powerful members. Stretched
+          thin, they’re using their power
+          and influence to seek out and
+          eradicate dangerous artifacts
+          and mystic activity in the sector.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="page2-header">
+    <h1 class="game-name">Scum<span class="ampersand">&</span>Villainy</h1>
+    <div class="playbook-title">
+      <h2>
+        Speaker
+      </h2>
+      <p>
+        A respectable person on the take
+      </p>
+    </div>
+  </div>
+  <div class="load">
+    <span class="title">Load</span>
+    <div class="load-level"><span class="marker">▯</span> <span class="title">3 Light</span></div>
+    <div class="load-level"><span class="marker">▯</span> <span class="title">5 Normal</span></div>
+    <div class="load-level"><span class="marker">▯</span> <span class="title">6 Heavy</span></div>
+    <div><i>(Italics don't count for load)</i></div>
+  </div>
+  <div class="playbook-items">
+    <div class="title-area">
+      <h3>Speaker Items</h3>
+    </div>
+    <ul>
+      <li><span class="box">☐</span> <span class="title">Fine Clothes:</span> Silk sarongs, suits, fine blue capes.</li>
+      <li><span class="box0">◯</span> <i><span class="title">Legitimate ID:</span> A properly encoded Hegemonic ID indicating your legitimate station in the Hegemony.</i></li>
+      <li><span class="box">☐</span> <span class="title">Luxury Item:</span> Fine brandies, small but thoughtful gifts, spices and perfumes, fine instruments, popular games, etc.</li>
+      <li><span class="box0">◯</span> <i><span class="title">Small Luxury Item</span></i></li>
+      <li><span class="box">☐-☐</span> <span class="title">Large Luxury Item</span></li>
+      <li><span class="box0">◯</span> <i><span class="title">Memento of a Past Encounter:</span> A distinctive piece of jewellery, a fine blade with a House crest, a signet ring, a small statue.</i></li>
+    </ul>
+  </div>
+  <div class="standard-items">
+    <div class="title-area">
+      <h3>Standard Items</h3>
+    </div>
+    <ul>
+      <li><span class="box">☐</span> <span class="title">Blaster Pistol:</span> A pistol that shoot bolts of hot plasma
+        at high speeds. Accurate
+        only at close range. Makes “pew pew” noises (mandatory).</li>
+      <li><span class="box">☐</span> <span class="title">2nd Blaster Pistol</span></li>
+      <li><span class="box">☐</span> <span class="title">Melee Weapon:</span> Sharp. Blunt. Pointy. Stabby. Slicy. All
+        different sizes. Some come
+        with laser edges. Some vibrate...ooh. Batteries included.</li>
+      <li><span class="box">☐-☐</span> <span class="title">Heavy Blaster:</span> Can do considerable damage to vehicles,
+        heavy armor, and
+        constructions like unshielded doors. Has about a dozen shots.</li>
+      <li><span class="box">☐</span> <span class="title">Detonator:</span> Extremely deadly explosive weapon. Fits in
+        the palm of your hand and can
+        be thrown. Takes care of those shielded doors that heavy blasters can’t handle. Illegal. You shouldn’t have
+        this. No, really.</li>
+      <li><span class="box">☐</span> <span class="title">Hacking Tools:</span> Deck, splicing pliers, plugs and ports,
+        keypad crackers, specialized
+        software, custom-modified chips, rainbow dictionaries, automated exploits. What every growing hacker needs.</li>
+      <li><span class="box">☐</span> <span class="title">Repair Tools:</span> Things you need to fix ship engines,
+        speeders, hovercars, and the
+        like. Also, tools to hot-splice consoles and tweak machinery. Hammers, a welder, screwdrivers, wrenches, battery
+        chargers, spray-painters.</li>
+      <li><span class="box">☐-☐</span> <span class="title">Medkit:</span> Blood for a few common races, gauze,
+        anti-radiation injector, laser
+        scalpel, antiseptics, thread, painkillers.</li>
+      <li><span class="box">☐</span> <span class="title">Spy Gear:</span> Disguises, voice modulators, mini-cameras,
+        thermal scanners, false
+        thumbprints, and audio filters.</li>
+      <li><span class="box0">◯</span> <i><span class="title">Illicit Drugs:</span> What’s your poison, space cowboy?</i>
+      </li>
+      <li><span class="box0">◯</span> <i><span class="title">Communicator:</span> Has a few bands, likely even a few
+          encrypted. Works only when within
+          orbit.</i></li>
+      <li><span class="box">☐-☐</span> <span class="title">Armor:</span> Really unsubtle, full body stuff. Stops a few
+        bolts. Will shrug off a knife
+        without noticing. Powered. Assists in movement.</li>
+      <li><span class="box">☐-☐</span> <span class="title">Spacesuit:</span> Some radiation protection, survival in
+        toxic atmospheres, EVA. Half a
+        day of oxygen (or other substance you breathe).</li>
+    </ul>
+  </div>
+
+  <div class="license-footer">
+    <hr />
+    <p class="cc-logo"><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img
+          alt="Creative Commons License" style="border-width:0"
+          src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a></p>
+    <p>© Sly Gryphon, version 2023.01.09. This work is licensed under a <a rel="license"
+        href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International
+        License</a>.</p>
+    </p>
+  </div>
+
+</body>
+
+</html>

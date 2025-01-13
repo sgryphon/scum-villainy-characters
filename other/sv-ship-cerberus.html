@@ -1,0 +1,954 @@
+<html>
+
+<head>
+  <style>
+    body {
+      font-family: 'Exo 2';
+    }
+
+    .header {
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      margin-bottom: 1em;
+    }
+
+    /*
+    .header, .page2-header {
+      border: solid 1px green;
+    }
+
+    .game-name, .playbook-title {
+      border: solid 1px red;
+    }
+    */
+
+    .header .game-name {
+      font-family: 'Ethnocentric';
+      text-transform: uppercase;
+      margin-block-end: 0;
+      text-align: right;
+      margin: 0;
+    }
+
+    .header .game-name .ampersand {
+      color: #888888;
+    }
+
+    .header h2 {
+      font-family: 'Ethnocentric';
+      text-transform: uppercase;
+      margin: 0;
+      display: inline-block;
+      font-size: 2em;
+    }
+
+    .header p {
+      text-transform: uppercase;
+      font-size: 0.7em;
+      margin-top: 0;
+      margin-left: 1em;
+      display: inline-block;
+    }
+
+    .description table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .description .row1 .title {
+      width: 15%;
+    }
+
+    .description .row1 .value {
+      width: 35%;
+    }
+
+    .description .title {
+      border-top: solid 1px black;
+      border-left: solid 1px black;
+      border-bottom: solid 1px black;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .description .value {
+      border-top: solid 1px black;
+      border-right: solid 1px black;
+      border-bottom: solid 1px black;
+      font-family: 'Architects Daughter';
+      color: #0000ff;
+    }
+
+    .description .reputation.value {
+      font-family: 'Exo 2';
+      text-transform: uppercase;
+      font-size: 0.8em;
+      color: #888888;
+    }
+
+    .money {
+      display: flex;
+      justify-content: left;
+      margin-top: 1em;
+      margin-bottom: 0.5em;
+    }
+
+    .money .title {
+      font-family: 'Ethnocentric';
+      text-transform: uppercase;
+    }
+
+    .money .cred {
+      padding-right: 1em;
+    }
+
+    .money .stash {
+      color: #888888;
+    }
+
+    .attributes {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1em;
+    }
+
+    .attributes .crew td {
+      padding-bottom: 0.4em;
+    }
+
+    .systems-table {
+      border-collapse: collapse;
+    }
+
+    .systems-table td {
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #cccccc;
+      padding-left: 0.5em;
+    }
+
+    .systems-table .title, .systems-table .on {
+      color: #000000;
+    }
+
+    .systems-table .title-row td {
+      color: #000000;
+      padding-left: 0.1em;
+    }
+
+    .systems-table .title-row .title {
+      font-family: 'Ethnocentric';
+      text-transform: none;
+      font-weight: normal;
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      display: inline-block;
+      width: 14em;
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .damage-table {
+      border-collapse: collapse;
+    }
+
+    .damage-table td {
+      text-transform: uppercase;
+      padding-left: 0.5em;
+    }
+
+    .damage-table .title {
+      font-weight: bold;
+    }
+
+    .damage-table .title-row td {
+      padding-left: 0.1em;
+    }
+
+    .damage-table .title-row .title {
+      font-family: 'Ethnocentric';
+      text-transform: none;
+      font-weight: normal;
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      display: inline-block;
+      width: 10em;
+      background: #cccccc;
+    }
+
+    .block2 {
+      border-collapse: collapse;
+    }
+
+    .block2 td {
+      padding-left: 0.5em;
+    }
+
+    .block2 .title {
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .block2 .title {
+      font-family: 'Ethnocentric';
+      text-transform: none;
+      font-weight: normal;
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      display: inline-block;
+      width: 12em;
+    }
+
+    .block2 .crew .value {
+      color: #cccccc;
+    }
+
+    .block2 .upkeep .title {
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .block2 .shields .title {
+      background: #cccccc;
+    }
+
+    .damage-note ul {
+      margin: 0;
+      padding-left: 1em;
+      font-size: 0.8rem;
+    }
+
+    .mark-xp {
+      margin-top: 1em;
+    }
+
+    .mark-xp ul {
+      margin: 0;
+      padding-left: 1em;
+      font-size: 0.8em;
+    }
+
+    .mark-xp p {
+      margin: 0;
+      font-size: 0.8em;
+    }
+
+    .playbook-advancement .title {
+      font-family: 'Ethnocentric';
+      padding-left: 0.5em;
+      padding-right: 0.5em;
+      display: inline-block;
+      background: #000000;
+      color: #ffffff;
+    }
+
+    .factions-header h3 {
+      font-family: 'Ethnocentric';
+      padding-left: 0.25em 0;
+      margin-top: 0.5em;
+      margin-bottom: 0.25em;
+      margin-right: 1em;
+      font-weight: normal;
+      display: inline-block;
+    }
+
+    .factions-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0;
+    }
+
+    .factions-row > div {
+      width: 14em;
+    }
+
+    .factions-row table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .factions-row table td {
+      border: solid 1px #cccccc;
+      padding: 0.1em 0.5em;
+    }
+
+    .special-abilities {
+      background-color: #cccccc;
+      padding-bottom: 0.5em;
+      padding-left: 0;
+    }
+
+    .special-abilities .title-area {
+      background-color: #888888;
+      margin: 0;
+      padding-left: 0.5em;
+    }
+
+    .special-abilities h3 {
+      font-family: 'Ethnocentric';
+      font-weight: normal;
+      margin-bottom: 0.3em;
+      margin-right: 0.5em;
+    }
+
+    .special-abilities p {
+      padding-left: 1em;
+      padding-right: 0.5em;
+      text-indent: -1em;
+      margin: 0;
+      margin-left: 0.3em;
+      margin-bottom: 0.3em;
+    }
+
+    .special-abilities .title {
+      font-weight: bold;
+      font-variant: small-caps;
+    }
+
+    .notes-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+      margin-top: 1em;
+    }
+
+    .playbook-friends {
+      background-color: #cccccc;
+      padding-bottom: 0.5em;
+      padding-left: 0;
+      width: 23em;
+    }
+
+    .playbook-friends .title-area {
+      background-color: #888888;
+      margin: 0;
+      padding-left: 0.5em;
+    }
+
+    .playbook-friends h3 {
+      font-family: 'Ethnocentric';
+      font-weight: normal;
+      margin: 0;
+      margin-bottom: 0.3em;
+      margin-right: 0.5em;
+    }
+
+    .playbook-friends .friend-type {
+      font-family: 'Ethnocentric';
+      font-size: 0.7em;
+    }
+
+    .playbook-friends .title {
+      font-weight: bold;
+      margin-left: 1em;
+    }
+
+    .playbook-friends table {
+      padding-right: 0.5em;
+    }
+
+    .notes {
+      margin-left: 1em;
+      flex: 1;
+      border: solid 1px #000000;
+    }
+
+    .notes .title-area {
+      padding-left: 0.5em;
+    }
+
+    .notes h3 {
+      font-family: 'Ethnocentric';
+      font-weight: normal;
+      margin: 0;
+      margin-right: 0.5em;
+    }
+
+    .notes .note-area {
+      padding: 0 0.5em;
+    }
+
+    .notes .note-area p {
+      font-family: 'Architects Daughter';
+      color: #0000ff;
+      margin: 0.3em 0;
+    }
+
+    .notes .note-area .title {
+      text-transform: uppercase;
+    }
+
+    .playbook-items {
+      background-color: #cccccc;
+      padding-bottom: 0.5em;
+      padding-left: 0;
+    }
+
+    .playbook-items .title-area {
+      background-color: #888888;
+      margin: 0;
+      padding-left: 0.5em;
+    }
+
+    .playbook-items h3 {
+      font-family: 'Ethnocentric';
+      font-weight: normal;
+      margin-bottom: 0.3em;
+      margin-right: 0.5em;
+    }
+
+    .playbook-items ul {
+      padding: 0;
+      margin: 0;
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+      list-style: none;
+    }
+
+    .playbook-items .title {
+      font-weight: bold;
+    }
+
+    .upgrade-section {
+      padding-left: 0;
+    }
+
+    .upgrade-section .title-area {
+      margin: 0;
+      padding-left: 0.5em;
+      background-color: #cccccc;
+    }
+
+    .upgrade-section h3 {
+      font-family: 'Ethnocentric';
+      font-weight: normal;
+      margin-bottom: 0.3em;
+      margin-right: 0.5em;
+    }
+
+    .standard-items {
+      padding-left: 0;
+    }
+
+    .standard-items .title-area {
+      margin: 0;
+      padding-left: 0.5em;
+    }
+
+    .standard-items h3 {
+      font-family: 'Ethnocentric';
+      font-weight: normal;
+      margin-bottom: 0.3em;
+      margin-right: 0.5em;
+    }
+
+    .standard-items ul {
+      padding: 0;
+      margin: 0;
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+      list-style: none;
+    }
+
+    .standard-items .title {
+      font-weight: bold;
+    }
+
+    .marker {
+      font-size: 1.4em;
+      line-height: 1em;
+      font-weight: normal;
+      display: inline-block;
+      margin-top: -0.2em;
+    }
+
+    .box {
+      font-weight: bold;
+    }
+
+    .box0 {
+      font-weight: bold;
+      font-size: 0.8em;
+      position: relative;
+      top: -0.2em;
+    }
+
+    .license-footer {
+      font-family: 'URW Gothic';
+      font-size: 0.64rem;
+    }
+
+    .page2-header {
+      display: none;
+    }
+
+    @media print {
+      @page {
+        size: A4;
+
+        @bottom-right {
+          content: counter(page);
+        }
+      }
+
+      body {
+        margin: 0;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        page-break-after: avoid;
+      }
+
+      table {
+        page-break-before: avoid;
+        page-break-inside: avoid;
+      }
+
+      .description .row1 .title {
+        width: 20%;
+      }
+
+      .description .row1 .value {
+        width: 30%;
+      }
+
+      .header {
+        flex-direction: row;
+      }
+
+      .header .game-name {
+        display: none;
+      }
+
+      .page2-header {
+        page-break-before: always;
+        display: flex;
+        justify-content: right;
+        margin-bottom: 1em;
+      }
+
+      .page2-header .playbook-title {
+        display: none;
+      }
+
+      .page2-header .game-name {
+        font-family: 'Ethnocentric';
+        text-transform: uppercase;
+        margin-block-end: 0;
+        text-align: right;
+        margin: 0;
+      }
+
+      .page2-header .game-name .ampersand {
+        color: #888888;
+      }
+
+      .license-footer {
+        display: block;
+        font-family: 'URW Gothic';
+        margin-top: 2em;
+      }
+
+      .license-footer .cc-logo {
+        float: left;
+        margin-top: 0;
+        margin-right: 1em;
+        margin-bottom: 1em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="header">
+    <h1 class="game-name">Scum<span class="ampersand">&</span>Villainy</h1>
+    <div class="playbook-title">
+      <h2>
+        Cerberus
+      </h2>
+      <p>
+        Bounty hunters and extraction specialists
+      </p>
+    </div>
+  </div>
+  <div class="description">
+    <table>
+      <tr class="row1">
+        <td class="name title">Designation</td>
+        <td class="name value">R-29 Firebrand-type Patrol Craft</td>
+        <td class="reputation title">Crew Reputation</td>
+        <td class="reputation value">Ambitious | Brutal | Daring | Honorable | Professional | Savvy | Strange | Subtle</td>
+      </tr>
+      <tr>
+        <td class="look title">Colors/Look</td>
+        <td class="look value" colspan="3">Grey, with the ship name in bold white writing. Red nose tip, blue stripes and highlights across rear.</td>
+      </tr>
+      <tr class="row1">
+        <td class="name title">Ship Size</td>
+        <td class="name value">Freighter</td>
+        <td class="alias title">Starting Gambits</td>
+        <td class="alias value">1</td>
+      </tr>
+    </table>
+  </div>
+  <div class="attributes">
+    <div>
+      <table class="systems-table">
+        <tr class="crew">
+          <td class="title">Crew</td>
+          <td>▷</td>
+          <td>▷</td>
+          <td>▷</td>
+          <td colspan="3">&nbsp;</td>
+        </tr>
+        <tr class="title-row">
+          <td colspan="7">
+            <span class="title">Systems</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="title">Hull</td>
+          <td><span class="on">▶</span></td>
+          <td>▷</td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="title">Engines</td>
+          <td><span class="on">▶</span></td>
+          <td><span class="on">▶</span></td>
+          <td>▷</td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td class="title">Comms</td>
+          <td><span class="on">▶</span></td>
+          <td><span class="on">▶</span></td>
+          <td>▷</td>
+          <td>▷</td>
+        </tr>
+        <tr>
+          <td class="title">Weapons</td>
+          <td><span class="on">▶</span></td>
+          <td>▷</td>
+          <td>▷</td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <table class="damage-table">
+        <tr class="crew">
+          <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr class="title-row">
+          <td colspan="2">
+            <span class="title">Damage</span>
+          </td>
+        </tr>
+        <tr>
+          <td class="title">Hull</td>
+          <td><span class="marker">▯</span></td>
+        </tr>
+        <tr>
+          <td class="title">Engines</td>
+          <td><span class="marker">▯▯</span></td>
+        </tr>
+        <tr>
+          <td class="title">Comms</td>
+          <td><span class="marker">▯▯</span></td>
+        </tr>
+        <tr>
+          <td class="title">Weapons</td>
+          <td><span class="marker">▯</span></td>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <table class="block2">
+        <tr class="crew">
+          <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr class="upkeep">
+          <td class="title">Upkeep</td>
+          <td><span class="marker">▮</span></td>
+        </tr>
+        <tr class="upkeep-note">
+          <td class="value" colspan="2">Paid at the start of every downtime</td>
+        </tr>
+        <tr class="skips">
+          <td class="title">Skips</td>
+          <td><span class="marker">▯▯▯▯</span></td>
+        </tr>
+        <tr class="crew">
+          <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr class="shields">
+          <td class="title">Shields</td>
+          <td><span class="marker"></span>—</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="damage-note">
+    <ul>
+      <li>For each level of damage, mark a <b>ship system</b>.</li>
+      <li>Each <b>downtime</b> you don’t pay your ship’s <b>upkeep</b>, roll a die for each consecutive downtime you haven’t paid.
+        <ul>
+          <li><b>1-3</b> No worries.</li>
+          <li><b>4/5</b> Damage to a system, but it’s minor. You can <b>rig</b> a solution.</li>
+          <li><b>6+</b> A system is badly damaged and must be repaired.</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="mark-xp">
+    <div class="playbook-advancement">
+      <span class="title">Advancement</span>
+      <span class="marker">▯▯▯▯▯▯▯▯</span>
+    </div>
+    <p>At the end of each session, for each item below, <b>mark 1 xp</b> (in your playbook or an attribute) or <b>2
+        xp</b> if that item occurred multiple times.</p>
+    <ul>
+      <li>You executed a successful extraction operation or capture of a bounty.</li>
+      <li>You contended with challenges above your current station.</li>
+      <li>You bolstered your crew’s reputation or developed a new one.</li>
+      <li>You expressed the goals, drives, inner conflict, or essential nature of the crew.</li>
+    </ul>
+  </div>
+  <div class="money">
+    <div class="cred"><span class="title">Cred</span> <span class="box">☑☑☐☐</span></div>
+    <div class="debt"><span class="title">Debt</span> <span class="box">☐☐☐☐ ☐☐☐☐</span></div>
+  </div>
+  <div class="special-abilities">
+    <div class="title-area">
+      <h3>Special Abilities</h3>
+    </div>
+    <p><span>▶</span> <span class="title"></span>Licensed:</span> Take <b>-2 heat</b> on any legitimate bounty hunting job. Your ship can carry particle weapons, and your crew can carry and legally use  heavy blasters in the pursuit of a target.</p>
+  </div>
+  <div class="notes-row">
+    <div class="playbook-friends">
+      <div class="title-area">
+        <h3>Contacts</h3>
+      </div>
+      <table>
+        <tr>
+          <td>▲ <span class="friend-type">(favorite)</span></td>
+          <td><span class="title">Stacy Weathers</span>, ace reporter</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span class="title">Arlox</span>, an Ashen Knives Pasha</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span class="title">Ishi</span>, a weapons dealer</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span class="title">Lix</span>, a xeno tracker</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><span class="title">Jezri</span>, a fixer</td>
+        </tr>
+      </table>
+    </div>
+    <div class="notes">
+      <div class="title-area">
+        <h3>Notes / Projects</h3>
+      </div>
+      <div class="note-area">
+        <p>
+          <b>51st Legion:</b> Hegemonic military
+          that represents the law
+          anywhere off-planet.
+        </p>
+        <p>
+          <b>Hegemonic News Network:</b>
+          Those who control the media
+          control the mind.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="factions-header">
+    <h3>Factions</h3><span>(Tier and Status)</span>
+  </div>
+  <div class="factions-row">
+    <div>
+      <table>
+        <tr><td>51st Legion</td><td>III</td><td>-1</td></tr>
+        <tr><td>Ashen Knives</td><td>III</td><td></td></tr>
+        <tr><td>Church of Stellar Flame</td><td>IV</td><td></td></tr>
+        <tr><td>Cobalt Syndicate</td><td>I</td><td>+1</td></tr>
+      </table>
+    </div>
+    <div>
+      <table>
+        <tr><td>Cult of the Seekers</td><td>II</td><td>+1</td></tr>
+        <tr><td>Hegemonic News Network</td><td>II</td><td>+1</td></tr>
+        <tr><td>House Malklaith</td><td>III</td><td></td></tr>
+        <tr><td>Starsmiths Guild</td><td>III</td><td></td></tr>
+      </table>
+    </div>
+    <div>
+      <table>
+        <tr><td>Turner Society</td><td>II</td><td>-2</td></tr>
+        <tr><td>Yaru (Maker's Guild)</td><td>II</td><td></td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="page2-header">
+    <h1 class="game-name">Scum<span class="ampersand">&</span>Villainy</h1>
+    <div class="playbook-title">
+      <h2>
+        Cerberus
+      </h2>
+      <p>
+        Bounty hunters and extraction specialists
+      </p>
+    </div>
+  </div>
+  <div class="upgrade-section">
+    <div class="title-area">
+      <h3>Crew / Ship Upgrades</h3>
+    </div>
+  </div>
+  <div class="playbook-items">
+    <div class="title-area">
+      <h3>Cerberus Upgrades</h3>
+    </div>
+    <ul>
+      <li><span class="box">☑</span> <span class="title">Stun Weapons:</span> 
+        A variety of weapons for capturing and
+        securing prisoners without (serious) harm. Includes, but is
+        not limited to: restraints (0 load), stun batons (1 load), stun
+        settings on normal blasters (1 load), even stun grenades
+        (replace detonators on sheet, 1 load), knockout drugs
+        (0 load, may not work on some xenos). Not required to
+        bring on jobs, but useful if you want to claim bounties.
+        Generally legal.
+      </li>
+    </ul>
+  </div>
+  <div class="standard-items">
+    <div class="title-area">
+      <h3>Crew Training</h3>
+    </div>
+    <ul>
+      <li><span class="box">☑</span> <span class="title">Prowess:</span>
+        May represent an appropriate place on
+        your ship, relevant manuals, or expert
+        mentors.
+        Mark <b>2 xp</b> in the appropriate category
+        instead of 1 when taking the downtime
+        <b>train</b> action.
+      </li>
+    </ul>
+  </div>
+  <div class="standard-items">
+    <div class="title-area">
+      <h3>Ship Upgrades</h3>
+    </div>
+    <ul>
+    </ul>
+  </div>
+  <div class="standard-items">
+    <div class="title-area">
+      <h3>Crew Gear</h3>
+    </div>
+    <ul>
+      
+    </ul>
+  </div>
+  <div class="upgrade-section">
+    <div class="title-area">
+      <h3>Ship Modules</h3>
+    </div>
+  </div>
+  <div class="standard-items">
+    <div class="title-area">
+      <h3>Auxiliary Modules</h3>
+    </div>
+    <ul>
+      <li><span class="box">☑</span> <span class="title">Brig:</span>
+        Space jail. Not meant for long-term
+        incarceration.
+      </li>
+    </ul>
+  </div>
+  <div class="standard-items">
+    <div class="title-area">
+      <h3>Hull Modules</h3>
+    </div>
+    <ul>
+    </ul>
+  </div>
+  <div class="standard-items">
+    <div class="title-area">
+      <h3>Engine Modules</h3>
+    </div>
+    <ul>
+      <li><span class="box">☑</span> <span class="title">Jump Drive:</span>
+        A special engine that can
+        activate the Ur gates that connect systems
+        and translate the ship into hyperspace
+        lanes.
+      </li>
+    </ul>
+  </div>
+  <div class="standard-items">
+    <div class="title-area">
+      <h3>Comms Modules</h3>
+    </div>
+    <ul>
+      <li><span class="box">☑</span> <span class="title">Long-Range Scanner:</span>
+        Provides broad EM
+        spectrum and gravimetric readings, giving
+        the crew advance warning up to a dozen
+        light-minutes away.
+      </li>
+      <li><span class="box">☑</span> <span class="title">Nexus Link:</span>
+        A link to the Hegemonic System
+        Network. Allows for news updates,
+        realtime messages, and tapping into
+        system-wide sensor grids. Others may
+        be able to hack into your ship remotely
+        via the same channel.
+      </li>
+    </ul>
+  </div>
+  <div class="standard-items">
+    <div class="title-area">
+      <h3>Weapon Modules</h3>
+    </div>
+    <ul>
+      <li><span class="box">☑</span> <span class="title">Grappling Hooks:</span>
+        Officially for latching onto
+        asteroids and netting cargo, it’s an array
+        of nets, grappling lines, and arms that
+        can tie together two vessels for towing
+        or boarding. Legal.
+      </li>
+    </ul>
+  </div>
+
+  <div class="license-footer">
+    <hr />
+    <p class="cc-logo"><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img
+          alt="Creative Commons License" style="border-width:0"
+          src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a></p>
+    <p>© Sly Gryphon, version 2023.01.09. This work is licensed under a <a rel="license"
+        href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International
+        License</a>.</p>
+    </p>
+  </div>
+
+</body>
+
+</html>
