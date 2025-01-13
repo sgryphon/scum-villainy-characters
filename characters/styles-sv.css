@@ -21,6 +21,11 @@
     font-style: italic;
 }
 @font-face {
+    font-family: "Architects Daughter";
+    src: url("../fonts/Architects_Daughter/ArchitectsDaughter-Regular.ttf");
+    font-weight: normal; /* 400 */
+}
+@font-face {
     font-family: "Edge of the Galaxy";
     src: url("../fonts/edge-of-the-galaxy/EdgeOfTheGalaxyRegular-OVEa6.otf");
     font-weight: normal; /* 400 */
